@@ -28,6 +28,19 @@ public class UserController {
 		model.addAttribute("user", new User());
 		return "user/form";
 	}
+	
+	@RequestMapping("/boardlist/form")
+	public String boardListForm() throws Exception {
+		
+		return "user/board_list";
+	}
+	
+	@RequestMapping("/boardwrite/form")
+	public String boardWriteForm() throws Exception {
+		
+		return "user/board_write";
+	}
+	
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public String join(User user) throws Exception {
