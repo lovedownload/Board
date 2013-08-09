@@ -6,6 +6,7 @@
 <link href="/stylesheets/slipp.css" rel="stylesheet">
 <link href="/stylesheets/wiki-style.css" rel="stylesheet">
 <link href="/stylesheets/wiki-textile-style.css" rel="stylesheet">
+<link href="/stylesheets/github.css" rel="stylesheet">
 <style>
   body {
     padding-top: 40px;

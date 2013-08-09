@@ -12,6 +12,7 @@ import net.slipp.domain.user.User;
 public class MemoryUserDao implements UserDao {
 	private static Map<String, User> users = new HashMap<String, User>();
 	
+	
 	public void insert(User user) throws SQLException {
 		users.put(user.getUserId(), user);
 		

@@ -35,7 +35,7 @@ public class UserController {
 		userService.join(user);
 		return "redirect:/";
 	}
-
+	
 	@RequestMapping("/login/form")
 	public String loginForm() throws Exception {
 		return "user/login";

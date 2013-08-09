@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -46,31 +46,25 @@
       <h1>글목록</h1>
     </header>
   
-  
-
 
 			<ul class="list">
-			
-				
+			<c:choose>
+			  <c:when test="${boardlist!= null && !empty boardlist}">
+				<c:forEach var="boardData" items="${boardlist}" varStatus="status">
 				<li>
 					<div class="wrap">
 						<div class="main">
 							<strong class="subject">
-								<a href="/questions/172">stateless는 왜 확장성이 좋고 캐쉬에 적합한 구조라는 건가요?</a>
+								<a href="/board/view/${status.index}/form">${boardData.title}</a>
 							</strong>
 							
 							<div class="auth-info">
-								
-									
-									
 										<i class="icon-add-comment"></i>
 										<span class="type">응답</span>
 										<span class="time">
-											2013-08-08 14:29
+											${boardData.date}
 										</span>
 										<a href="/users/65/fupfin" class="author">fupfin</a>
-									
-								
 							</div>
 							<div class="reply" title="댓글">
 								<i class="icon-reply"></i>
@@ -79,481 +73,29 @@
 						</div>
 					</div>
 				</li>
-
-			
 				
-				<li>
+					
+				 <c:if test="${index.count == fn:length(boardlist)}"></c:if>
+				</c:forEach>
+				</c:when>
+		   <c:otherwise>
+		   		<li>
 					<div class="wrap">
 						<div class="main">
-							<strong class="subject">
-								<a href="/questions/174">예외나 상수같은것을 처리하실 때 클래스를 어떻게 관리하시나요?</a>
-							</strong>
-							
-							<div class="auth-info">
-								
-									
-									
-										<i class="icon-add-comment"></i>
-										<span class="type">응답</span>
-										<span class="time">
-											2013-08-08 11:23
-										</span>
-										<a href="/users/65/fupfin" class="author">fupfin</a>
-									
-								
-							</div>
-							<div class="reply" title="댓글">
-								<i class="icon-reply"></i>
-								<span class="point">3</span>
-							</div>
+							등록된 게시물이 없습니다.
 						</div>
 					</div>
-				</li>
-
-			
-				
-				<li>
-					<div class="wrap">
-						<div class="main">
-							<strong class="subject">
-								<a href="/questions/173">비자아적 프로그래밍(Egoless Programming)</a>
-							</strong>
-							
-							<div class="auth-info">
-								
-									
-									
-										<i class="icon-add-comment"></i>
-										<span class="type">응답</span>
-										<span class="time">
-											2013-08-07 10:24
-										</span>
-										<a href="/users/87/benghun" class="author">benghun</a>
-									
-								
-							</div>
-							<div class="reply" title="댓글">
-								<i class="icon-reply"></i>
-								<span class="point">2</span>
-							</div>
-						</div>
-					</div>
-				</li>
-
-			
-				
-				<li>
-					<div class="wrap">
-						<div class="main">
-							<strong class="subject">
-								<a href="/questions/162">자바 인스턴스 변수와 지역 변수 초기화와 관련하여..</a>
-							</strong>
-							
-								<div class="tags">
-									<i class="icon-tag" title="태그"></i>
-									<span class="tag-list">
-										
-											<span class="tag">java</span>
-										
-									</span>
-								</div>
-							
-							<div class="auth-info">
-								
-									
-									
-										<i class="icon-add-comment"></i>
-										<span class="type">응답</span>
-										<span class="time">
-											2013-08-07 09:17
-										</span>
-										<a href="/users/247/오실장" class="author">오실장</a>
-									
-								
-							</div>
-							<div class="reply" title="댓글">
-								<i class="icon-reply"></i>
-								<span class="point">19</span>
-							</div>
-						</div>
-					</div>
-				</li>
-
-			
-				
-				<li>
-					<div class="wrap">
-						<div class="main">
-							<strong class="subject">
-								<a href="/questions/92">C 언어에서 TDD 기반 개발 환경 문서 공유 및 궁금한 점</a>
-							</strong>
-							
-								<div class="tags">
-									<i class="icon-tag" title="태그"></i>
-									<span class="tag-list">
-										
-											<span class="tag">tdd</span>
-										
-											<span class="tag">c</span>
-										
-									</span>
-								</div>
-							
-							<div class="auth-info">
-								
-									
-									
-										<i class="icon-add-comment"></i>
-										<span class="type">응답</span>
-										<span class="time">
-											2013-08-06 11:40
-										</span>
-										<a href="/users/1/자바지기" class="author">자바지기</a>
-									
-								
-							</div>
-							<div class="reply" title="댓글">
-								<i class="icon-reply"></i>
-								<span class="point">2</span>
-							</div>
-						</div>
-					</div>
-				</li>
-
-			
-				
-				<li>
-					<div class="wrap">
-						<div class="main">
-							<strong class="subject">
-								<a href="/questions/166">스프링에서 말하는 서블릿 애플리케이션 컨텍스트가 서블릿 컨텍스트인가요?</a>
-							</strong>
-							
-								<div class="tags">
-									<i class="icon-tag" title="태그"></i>
-									<span class="tag-list">
-										
-											<span class="tag">스프링</span>
-										
-									</span>
-								</div>
-							
-							<div class="auth-info">
-								
-									
-									
-										<i class="icon-add-comment"></i>
-										<span class="type">응답</span>
-										<span class="time">
-											2013-08-06 10:30
-										</span>
-										<a href="/users/65/fupfin" class="author">fupfin</a>
-									
-								
-							</div>
-							<div class="reply" title="댓글">
-								<i class="icon-reply"></i>
-								<span class="point">3</span>
-							</div>
-						</div>
-					</div>
-				</li>
-
-			
-				
-				<li>
-					<div class="wrap">
-						<div class="main">
-							<strong class="subject">
-								<a href="/questions/107">소스 코드 가독성 측면에서 C언어의 define 사용은 적절한가?</a>
-							</strong>
-							
-								<div class="tags">
-									<i class="icon-tag" title="태그"></i>
-									<span class="tag-list">
-										
-											<span class="tag">c</span>
-										
-									</span>
-								</div>
-							
-							<div class="auth-info">
-								
-									
-									
-										<i class="icon-add-comment"></i>
-										<span class="type">응답</span>
-										<span class="time">
-											2013-08-05 17:07
-										</span>
-										<a href="/users/247/오실장" class="author">오실장</a>
-									
-								
-							</div>
-							<div class="reply" title="댓글">
-								<i class="icon-reply"></i>
-								<span class="point">3</span>
-							</div>
-						</div>
-					</div>
-				</li>
-
-			
-				
-				<li>
-					<div class="wrap">
-						<div class="main">
-							<strong class="subject">
-								<a href="/questions/171">다른 클래스의 정보를 접근할때 방식 </a>
-							</strong>
-							
-							<div class="auth-info">
-								
-									
-									
-										<i class="icon-add-comment"></i>
-										<span class="type">응답</span>
-										<span class="time">
-											2013-08-01 13:25
-										</span>
-										<a href="/users/166/utopianami" class="author">utopianami</a>
-									
-								
-							</div>
-							<div class="reply" title="댓글">
-								<i class="icon-reply"></i>
-								<span class="point">2</span>
-							</div>
-						</div>
-					</div>
-				</li>
-
-			
-				
-				<li>
-					<div class="wrap">
-						<div class="main">
-							<strong class="subject">
-								<a href="/questions/170">우리는 함수형 프로그래밍을 배워야 할까?</a>
-							</strong>
-							
-							<div class="auth-info">
-								
-									
-									
-										<i class="icon-add-comment"></i>
-										<span class="type">응답</span>
-										<span class="time">
-											2013-07-30 10:30
-										</span>
-										<a href="/users/65/fupfin" class="author">fupfin</a>
-									
-								
-							</div>
-							<div class="reply" title="댓글">
-								<i class="icon-reply"></i>
-								<span class="point">7</span>
-							</div>
-						</div>
-					</div>
-				</li>
-
-			
-				
-				<li>
-					<div class="wrap">
-						<div class="main">
-							<strong class="subject">
-								<a href="/questions/168">회사일이 재미없어 질 때 어떻게 극복하시나요?</a>
-							</strong>
-							
-							<div class="auth-info">
-								
-									
-									
-										<i class="icon-add-comment"></i>
-										<span class="type">응답</span>
-										<span class="time">
-											2013-07-29 08:23
-										</span>
-										<a href="/users/94/ezblog" class="author">ezblog</a>
-									
-								
-							</div>
-							<div class="reply" title="댓글">
-								<i class="icon-reply"></i>
-								<span class="point">10</span>
-							</div>
-						</div>
-					</div>
-				</li>
-
-			
-				
-				<li>
-					<div class="wrap">
-						<div class="main">
-							<strong class="subject">
-								<a href="/questions/169">TestCase는 어떤식으로 작성하나요?</a>
-							</strong>
-							
-							<div class="auth-info">
-								
-									
-									
-										<i class="icon-add-comment"></i>
-										<span class="type">응답</span>
-										<span class="time">
-											2013-07-26 16:43
-										</span>
-										<a href="/users/87/benghun" class="author">benghun</a>
-									
-								
-							</div>
-							<div class="reply" title="댓글">
-								<i class="icon-reply"></i>
-								<span class="point">2</span>
-							</div>
-						</div>
-					</div>
-				</li>
-
-			
-				
-				<li>
-					<div class="wrap">
-						<div class="main">
-							<strong class="subject">
-								<a href="/questions/163">람다식이 가져다줄 자바프로그래밍의 변화는 무엇이 있을까요?</a>
-							</strong>
-							
-							<div class="auth-info">
-								
-									
-									
-										<i class="icon-add-comment"></i>
-										<span class="type">응답</span>
-										<span class="time">
-											2013-07-25 23:35
-										</span>
-										<a href="/users/85/ologist" class="author">ologist</a>
-									
-								
-							</div>
-							<div class="reply" title="댓글">
-								<i class="icon-reply"></i>
-								<span class="point">9</span>
-							</div>
-						</div>
-					</div>
-				</li>
-
-			
-				
-				<li>
-					<div class="wrap">
-						<div class="main">
-							<strong class="subject">
-								<a href="/questions/167">WAS에서 멀티 인스턴스를 사용할 수 있잖아요, 그럼 그 인스턴스란 어떤 개념인가요?</a>
-							</strong>
-							
-							<div class="auth-info">
-								
-									
-									
-										<i class="icon-add-comment"></i>
-										<span class="type">응답</span>
-										<span class="time">
-											2013-07-23 17:16
-										</span>
-										<a href="/users/187/minkyong.an" class="author">minkyong.an</a>
-									
-								
-							</div>
-							<div class="reply" title="댓글">
-								<i class="icon-reply"></i>
-								<span class="point">5</span>
-							</div>
-						</div>
-					</div>
-				</li>
-
-			
-				
-				<li>
-					<div class="wrap">
-						<div class="main">
-							<strong class="subject">
-								<a href="/questions/165">split 한 후 출력.</a>
-							</strong>
-							
-							<div class="auth-info">
-								
-									
-									
-										<i class="icon-add-comment"></i>
-										<span class="type">응답</span>
-										<span class="time">
-											2013-07-14 22:27
-										</span>
-										<a href="/users/79/love.war.311" class="author">love.war.311</a>
-									
-								
-							</div>
-							<div class="reply" title="댓글">
-								<i class="icon-reply"></i>
-								<span class="point">3</span>
-							</div>
-						</div>
-					</div>
-				</li>
-
-			
-				
-				<li>
-					<div class="wrap">
-						<div class="main">
-							<strong class="subject">
-								<a href="/questions/164">JVM이 super keyword에 대한 처리를 어떻게 할까요?</a>
-							</strong>
-							
-								<div class="tags">
-									<i class="icon-tag" title="태그"></i>
-									<span class="tag-list">
-										
-											<span class="tag">java</span>
-										
-									</span>
-								</div>
-							
-							<div class="auth-info">
-								
-									
-									
-										<i class="icon-add-comment"></i>
-										<span class="type">응답</span>
-										<span class="time">
-											2013-07-11 12:59
-										</span>
-										<a href="/users/79/love.war.311" class="author">love.war.311</a>
-									
-								
-							</div>
-							<div class="reply" title="댓글">
-								<i class="icon-reply"></i>
-								<span class="point">8</span>
-							</div>
-						</div>
-					</div>
-				</li>
-
-			
-			</ul>
-			<nav class="pager">
-				<ul>
+				</li>				
+		     
+		   </c:otherwise>
+		</c:choose> 
+		 </ul>
+		 <nav class="pager">
+					
+	 		<ul>
 					<li class="active"><a href="/questions?page=1">1</a></li><li><a href="/questions?page=2">2</a></li><li><a href="/questions?page=3">3</a></li><li><a href="/questions?page=4">4</a></li><li><a href="/questions?page=5">5</a></li><li class="disabled"><a href="#">...</a></li><li><a href="/questions?page=12">12</a></li>
-				</ul>
-			</nav>
+						</ul>
+					</nav>			
 		</section>
 	</div>
 	<div class="content-sub">

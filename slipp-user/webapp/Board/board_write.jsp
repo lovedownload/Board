@@ -37,25 +37,20 @@
 <section class="write-content">
 	<div class="content-main">
 		<h1 class="write-title">새 글 작성</h1>
-		
 				
-		<form id="question" class="form-write" action="/questions" method="POST">
-			<input id="questionId" name="questionId" type="hidden" value=""/>
-			<fieldset>
+		<form class="form-write" action="/board/write" method="POST">
+		<input type="hidden" id="wirte_user" name="wirte_user" value="${loginUser.name}">
+						<fieldset>
 				<div class="box-input-line">
-					<input id="title" name="title" class="inp-title" placeholder="제목" type="text" value=""/>
+					<input id="title" name="title" class="inp-title" type="text" value="${board.title}" />
 				</div>
 				<div class="box-write">
-					<textarea id="contents" name="contents" rows="15" cols="80"></textarea>
+					<textarea id="contents" name="contents" rows="15" cols="500" text="${board.contents}"></textarea>
 				</div>
 				<div class="box-input-line">
 					<input id="plainTags" name="plainTags" class="inp-tags" placeholder="태그 - 공백 또는 쉼표로 구분 ex) javajigi, slipp" type="text" value=""/>
 				</div>
 				<div class="submit-write">
-					
-					<label class="msg-send-to-facebook">
-						<input id="connected1" name="connected" type="checkbox" value="true"/><input type="hidden" name="_connected" value="on"/> 페이스북으로 전송하려면 체크하세요
-					</label>
 					
 					<button type="submit" class="btn-submit"><i class="icon-submit"></i> 작성완료</button>
 				</div>
@@ -66,18 +61,7 @@
 	</div>
 </div>
 
-<script src="/resources/javascripts/jquery.validate.min.js"></script>
-<script src="/resources/javascripts/qna/tagparser.js"></script>
-<script src="/resources/javascripts/jquery.autocomplete.min.js"></script>
-<script src="/resources/javascripts/qna/form.js"></script>
-<script src="/resources/javascripts/qna/write.js"></script>
-<script src="/resources/javascripts/highlight.pack.js"></script>
-<script src="/resources/javascripts/qna/qna-set.js"></script>
-<script src="/resources/javascripts/qna/image.upload.js"></script>
-<script src="/resources/javascripts/jquery.markitup.js"></script>
-<script>
-$('#contents').markItUp(mySettings);
-</script>
+
 
 		</div>
 	</div>
@@ -103,90 +87,6 @@ $('#contents').markItUp(mySettings);
 		</div>
 	</footer>
 </div>
-<script>
-(function() {
-	var cx = '010235842937876666941:4opvrjfw190';
-	var gcse = document.createElement('script');
-	gcse.type = 'text/javascript';
-	gcse.async = true;
-	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//www.google.com/cse/cse.js?cx=' + cx;
-	var s = document.getElementsByTagName('script')[0];
-	s.parentNode.insertBefore(gcse, s);
-})();
-</script>
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-22853131-1']);
-  _gaq.push(['_trackPageview']);
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
-<script>
-try{
-	var pageTracker = _gat._getTracker("UA-22853131-1");
-	pageTracker._trackPageview();
-} catch(err) {}
-
-$(document).ready(function(){
-	var $notificationLayer = $('#notificationLayer');
-	var $notificationButton = $('#notificationButton');
-	var $siteSearchButton = $('#siteSearchButton');
-
-	$('body').on('click', function() {
-		$notificationLayer.hide();
-	});
-
-	$notificationButton.on('click', function(e){
-		e.stopPropagation();
-		e.preventDefault();
-		getNotificationData();
-		$notificationLayer.toggle();
-	});
-
-	$siteSearchButton.on('click', function(e) {
-		var $siteSearchArea = $('#siteSearchArea');
-		e.preventDefault();
-		$siteSearchArea.toggleClass('active');
-		if ($siteSearchArea.hasClass('active')) {
-			$siteSearchArea.find('input[type="text"]').focus();
-		}
-	})
-
-	function getNotificationData() {
-		var $btn = $notificationButton;
-		var $layer = $notificationLayer;
-
-		$.getJSON($btn.attr('href'), function(result){
-			var items = result;
-			var length = items.length;
-			var $ul = $('<ul></ul>');
-			var item;
-
-			for(var i=0; i < length; i++) {
-				item = items[i];
-
-				$("<li></li>")
-				.append(
-					$('<a></a>')
-					.attr('href', '/questions/' + item.questionId)
-					.text('"' + item.title + '" 글에 댓글이 달렸습니다.')
-				)
-				.appendTo($ul);
-			}
-			$btn.find('.notification-count').text('0');
-
-			$layer.find($('ul')).replaceWith($ul);
-		});
-	}
-});
-</script>
-<script src="/resources/javascripts/jquery.placeholder.min.js"></script>
-<script>
-$('input, textarea').placeholder();
-</script>
 </body>
 </html>
