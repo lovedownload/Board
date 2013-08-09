@@ -14,6 +14,7 @@ public class MemoryUserDao implements UserDao {
 	
 	public void insert(User user) throws SQLException {
 		users.put(user.getUserId(), user);
+		
 	}
 
 	public User findByUserId(String userId) throws SQLException {
