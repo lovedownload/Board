@@ -15,8 +15,6 @@ public class Board {
 	private String title;
 	private String contents;	
 	private String date;
-		
-	//private Dictionary<String, String> data;
 	
 	private static Logger log = LoggerFactory.getLogger(Board.class);
 	
@@ -26,12 +24,12 @@ public class Board {
 		
 	}
 	
-	public Board(String title, String contents)
+	public Board(String title, String contents, String date)
 	{
 		//this.key = key;
 		this.title = title;
 		this.contents = contents;	
-		
+		this.date = date;
 	}
 	
 	public String getName() {

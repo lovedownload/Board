@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -40,9 +41,6 @@
 				<gcse:searchresults></gcse:searchresults>
 			</div>
 			
-
-
-
 <section class="view-content">
 	<h1 class="article-title">${board.title}</h1>
 	<div class="content-main">
@@ -54,8 +52,8 @@
 			<img src='//graph.facebook.com/1324855987/picture' class="article-author-thumb" alt="" />
 		</div>
 		<div class="article-header-text">
-			<a href="/users/1/자바지기" class="article-author-name">${board.name}</a>
-			<a href="/questions/110" class="article-header-time" title="퍼머링크">
+			<a href="#" class="article-author-name">${board.name}</a>
+			<a href="#" class="article-header-time" title="">
 				${board.date}
 				<i class="icon-link"></i>
 			</a>
@@ -69,20 +67,51 @@
 
 		<div class="qna-comment">
 			
-			<p class="article-count"><strong>0</strong>개의 의견</p>
+			<p class="article-count"><strong>"${fn:length(boardReplyList)}"</strong>개의 의견</p>
+			<c:choose>
+			  <c:when test="${boardReplyList!= null && !empty boardReplyList}">
+				<c:forEach var="boardReplyData" items="${boardReplyList}" varStatus="status">
+			<article class="article">
+	
+					<div class="article-header">
+						<div class="article-header-thumb">
+							<img src='//graph.facebook.com/100000526987082/picture' class="article-author-thumb" alt="" />
+						</div>
+						<div class="article-header-text">
+							<a href="#" class="article-author-name">${boardReplyData.name}</a>
+							<a href="#" class="article-header-time" title="">
+								${boardReplyData.date}
+								
+							</a>
+						</div>
+					</div>
+					
+					<div class="article-doc comment-doc">
+						<p>${boardReplyData.contents}</p>
+					</div>
+					<div class="article-util">
+						<ul class="list-util">
+						</ul>
+					</div>
+				</article>
+				<c:if test="${status.count == fn:length(BoardReplyList)}"></c:if>
+				</c:forEach>
+				</c:when>
+				</c:choose>
+			
+			
+			
 			
 			</form>
-			<form id="answer" class="form-write" action="/questions/137/answers" method="POST">
+			<form id="answer" class="form-write" action="/board/${boardIndex}/reply" method="POST">
+			<input type="hidden" name="writeName" value="${loginUser.name}">
 					<fieldset>
 						<legend class="title-write">의견 추가하기</legend>
 						<div class="box-write">
-							<textarea id="contents" name="contents" rows="15" cols="80" text="${board_reply.Contents}"></textarea>
+							<textarea id="contents" name="contents" rows="15" cols="80"></textarea>
 						</div>
 						<div class="submit-write">
-							
-							<label class="msg-send-to-facebook">
-								<input id="connected1" name="connected" type="checkbox" value="true"/><input type="hidden" name="_connected" value="on"/> 페이스북으로 전송하려면 체크하세요
-							</label>
+													
 							
 							<button type="submit" class="btn-submit"><i class="icon-submit"></i> 작성완료</button>
 						</div>

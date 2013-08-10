@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 
 import net.slipp.dao.user.BoardDao;
 import net.slipp.domain.user.Board;
+import net.slipp.domain.user.BoardReply;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,15 +48,28 @@ public class BoardService {
 	
 	public ArrayList<Board> boardContntList() throws SQLException {
 		
-		return boardDao.getBoardlist();
-		
-	}
+		return boardDao.getBoardlist();		
+	}	
 	
 	public Board boardContentView(int index) throws SQLException {
 		
 		return boardDao.getBoardContent(index);
 	}
 	
+	public void boardReplyWrite(BoardReply boardReply, int index) throws SQLException {
+		log.debug("Board Reply Content : {}", boardReply);		
+		boardDao.insertReply(boardReply, index);
+	}
+	
+	public ArrayList<BoardReply> boardReplyList(int index) throws SQLException {
+		return boardDao.getBoardReplyList(index);
+	}
+	
+	//테스트용도 
+	public int size()
+	{
+		return boardDao.size();
+	}
 	
 	
 }

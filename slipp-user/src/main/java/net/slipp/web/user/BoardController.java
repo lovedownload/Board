@@ -31,9 +31,9 @@ public class BoardController {
 	
 	@RequestMapping("/boardlist/form")
 	public String boardListForm(Model model) throws Exception {	
-			
+				
+		model.addAttribute("boardlist", boardService.boardContntList());
 		
-		model.addAttribute("boardlist", boardService.boardContntList());			
 		return "Board/board_list";
 	}
 	
@@ -47,9 +47,19 @@ public class BoardController {
 	public String boardViewForm(@PathVariable int Index, Model model) throws Exception {
 		
 		Board boardContentData = boardService.boardContentView(Index); 
+	
+		//테스트용도 
+		/*log.debug("view form reply size : {}", boardService.size());
 		
+		if(boardService.size() > 0)
+		{				
+			log.debug("view form reply data : {}", boardService.boardReplyList(0).get(boardService.size() - 1));
+		}*/
+			
+		//model.addAttribute("size", boardService.size());		
 		model.addAttribute("board", boardContentData);
-		model.addAttribute("board_reply", new BoardReply());
+		model.addAttribute("boardIndex", Index);
+		model.addAttribute("boardReplyList", boardService.boardReplyList(Index));		
 		return "Board/board_list_view";
 	}
 	
@@ -59,13 +69,26 @@ public class BoardController {
 		Date now = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");	
 		String date = format.format(now);
-		
+				
 		board.setDate(date);
 		board.setName(wirte_user);		
-		//User user = (User)session.getAttribute("loginUser");
-		
+				
 		log.debug("board content : {}", board);
 		boardService.boardContentWrite(board);		
 		return "redirect:/board/boardlist/form";
+	}	
+	
+	@RequestMapping(value="{Index}/reply", method = RequestMethod.POST)
+	public String boardReplyWrite(@PathVariable int Index, BoardReply boardReply, String writeName, String contents) throws Exception {
+		Date now = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");	
+		String date = format.format(now);
+		
+		BoardReply br = new BoardReply(writeName, contents, date);
+		
+		log.debug("board reply content : {}", br);
+		boardService.boardReplyWrite(br, Index);
+				
+		return "redirect:/board/view/" + Index + "/form";
 	}	
 }
