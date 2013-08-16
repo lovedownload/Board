@@ -15,6 +15,5 @@ public interface BoardDao {
 	ArrayList<Board> getBoardlist() throws SQLException;
 	ArrayList<BoardReply> getBoardReplyList(int index) throws SQLException;
 	Board getBoardContent(int index) throws SQLException;
-	int size();
 	
 }

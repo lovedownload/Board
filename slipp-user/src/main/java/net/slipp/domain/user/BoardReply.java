@@ -2,6 +2,8 @@ package net.slipp.domain.user;
 
 public class BoardReply {
 	
+	private int idx;
+	private int boardidx;
 	private String contents;
 	private String name;
 	private String date;
@@ -11,10 +13,28 @@ public class BoardReply {
 		
 	}
 	
-	public BoardReply(String name, String contents, String date){
+	public BoardReply(int idx, int boardidx, String name, String contents, String date){
+		this.idx = idx;
+		this.boardidx = boardidx;
 		this.name = name;
 		this.contents = contents;
 		this.date = date;
+	}
+
+	public int getIdx() {
+		return idx;
+	}
+
+	public void setIdx(int idx) {
+		this.idx = idx;
+	}
+
+	public int getBoardidx() {
+		return boardidx;
+	}
+
+	public void setBoardidx(int boardidx) {
+		this.boardidx = boardidx;
 	}
 
 	public String getContents() {

@@ -47,16 +47,6 @@ public class BoardController {
 	public String boardViewForm(@PathVariable int Index, Model model) throws Exception {
 		
 		Board boardContentData = boardService.boardContentView(Index); 
-	
-		//테스트용도 
-		/*log.debug("view form reply size : {}", boardService.size());
-		
-		if(boardService.size() > 0)
-		{				
-			log.debug("view form reply data : {}", boardService.boardReplyList(0).get(boardService.size() - 1));
-		}*/
-			
-		//model.addAttribute("size", boardService.size());		
 		model.addAttribute("board", boardContentData);
 		model.addAttribute("boardIndex", Index);
 		model.addAttribute("boardReplyList", boardService.boardReplyList(Index));		
@@ -84,7 +74,12 @@ public class BoardController {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");	
 		String date = format.format(now);
 		
-		BoardReply br = new BoardReply(writeName, contents, date);
+		BoardReply br = new BoardReply();
+		
+		br.setBoardidx(Index);
+		br.setName(writeName);
+		br.setContents(contents);
+		br.setDate(date);
 		
 		log.debug("board reply content : {}", br);
 		boardService.boardReplyWrite(br, Index);

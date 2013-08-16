@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class BoardService {
 
-	@Resource(name="memoryBoardDao")
+	@Resource(name="jdbcBoardDao")
 	private BoardDao boardDao;
 	
 	
@@ -64,12 +64,5 @@ public class BoardService {
 	public ArrayList<BoardReply> boardReplyList(int index) throws SQLException {
 		return boardDao.getBoardReplyList(index);
 	}
-	
-	//테스트용도 
-	public int size()
-	{
-		return boardDao.size();
-	}
-	
 	
 }

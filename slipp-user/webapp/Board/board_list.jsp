@@ -55,7 +55,7 @@
 					<div class="wrap">
 						<div class="main">
 							<strong class="subject">
-								<a href="/board/view/${status.index}/form">${boardData.title}</a>
+								<a href="/board/view/${boardData.index}/form">${boardData.title}</a>
 							</strong>
 							
 							<div class="auth-info">

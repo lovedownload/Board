@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 public class Board {
 	
-	//private int key;
+	private int index;
 	private String name;
 	private String title;
 	private String contents;	
@@ -24,14 +24,23 @@ public class Board {
 		
 	}
 	
-	public Board(String title, String contents, String date)
+	public Board(int index, String title, String name, String contents,  String date)
 	{
-		//this.key = key;
+		this.index = index;
 		this.title = title;
-		this.contents = contents;	
+		this.name = name;
+		this.contents = contents;
 		this.date = date;
 	}
 	
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -67,7 +76,7 @@ public class Board {
 
 	@Override
 	public String toString() {
-		return "Board [title=" + title + ", contents=" + contents + ",  date=" + date + ", userId=" + name + "]";
+		return "Board [title=" + title + ", contents=" + contents + ",  date=" + date + ", name=" + name + "]";
 	}
 	
 }
