@@ -17,6 +17,10 @@ public class MemoryUserDao implements UserDao {
 		users.put(user.getUserId(), user);
 		
 	}
+	
+	public void update(User user) throws SQLException {
+		
+	}
 
 	public User findByUserId(String userId) throws SQLException {
 		return users.get(userId);
